@@ -4,4 +4,10 @@
   border: 1px solid #FFF;
   background: url(../../../images/pencil.png) center no-repeat;
   margin: 10px 0 0 20px;
+  opacity: 1;
+  transition: opacity 0.3s;
+}
+
+.profile__edit-button:hover {
+  opacity: 0.6;
 }

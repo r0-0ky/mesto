@@ -3,4 +3,10 @@
   height: 50px;
   border: 2px solid #FFF;
   background: url(../../../images/plus.png) center no-repeat;
+  opacity: 1;
+  transition: opacity 0.3s;
+}
+
+.profile__add-button:hover {
+  opacity: 0.6;
 }

@@ -8,6 +8,9 @@ let nameInput = document.querySelector(".popup__input_type_name");
 let jobInput = document.querySelector(".popup__input_type_job");
 let closeButton = document.querySelector(".popup__close-button");
 let popup = document.querySelector(".popup")
+let likeButton = document.querySelectorAll(".card__like-button")
+
+console.log(likeButton)
 
 nameInput.value = profileName.textContent;
 jobInput.value = profileJob.textContent;
@@ -23,7 +26,14 @@ formElement.addEventListener("submit", handleFormSubmit);
 closeButton.addEventListener("click", function () {
   popup.classList.remove("popup_opened")
 });
+
 editButton.addEventListener("click", function () {
   popup.classList.add("popup_opened")
 })
+
+for (let i = 0; i < likeButton.length; i++) {
+  likeButton[i].addEventListener("click", function () {
+    likeButton[i].classList.toggle("card__like-button_active");
+  })
+}
 
