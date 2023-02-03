@@ -1,7 +1,24 @@
 .grid-cards {
   display: grid;
   grid-template-columns: repeat(3, 282px);
-  grid-template-rows: repeat(2, 1fr);
   gap: 20px 17px;
-  margin: 51px 0 66px 0;
+  margin: 51px auto 66px auto;
+}
+
+@media screen and (max-width: 900px) {
+    .grid-cards {
+      grid-template-columns: repeat(2, minmax(282px, 100%));
+    }
+}
+
+@media screen and (max-width: 730px) {
+  .grid-cards {
+    margin: 34px auto 47px auto;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .grid-cards {
+    grid-template-columns: minmax(282px, 100%);
+  }
 }

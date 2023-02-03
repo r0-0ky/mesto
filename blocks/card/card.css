@@ -1,4 +1,5 @@
 .card {
   background: #FFF;
   border-radius: 10px;
+  min-height: 361px;
 }

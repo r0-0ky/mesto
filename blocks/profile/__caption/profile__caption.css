@@ -8,3 +8,18 @@
   white-space: nowrap;
   overflow: hidden;
 }
+
+@media screen and (max-width: 730px) {
+  .profile__caption {
+    margin: 7px 0 32px 0;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .profile__caption {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+    max-width: 280px;
+  }
+}
