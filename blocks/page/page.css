@@ -4,4 +4,6 @@
   margin: 0 auto;
   color: #FFF;
   font-family: "Inter", Arial, Helvetica, sans-serif;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
 }
