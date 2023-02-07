@@ -9,5 +9,5 @@
 }
 
 .card__like-button:active {
-  background: url(../../../images/black-heart.svg)
+  background: url(../../../images/black-heart.svg);
 }
