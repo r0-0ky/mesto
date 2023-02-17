@@ -7,7 +7,7 @@
   }
 }
 
-.popup_opened {
-  animation: out-in-fade 0.3s;
+.image-popup_opened {
   visibility: visible;
+  animation: out-in-fade 0.3s;
 }

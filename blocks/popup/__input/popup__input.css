@@ -6,8 +6,13 @@
   font-weight: 400;
   font-size: 14px;
   line-height: 17px;
+  margin: 0 0 48px 0;
 }
 
 .popup__input:focus {
   outline: none;
+}
+
+.popup__input:first-child {
+  margin: 0 0 32px 0;
 }
