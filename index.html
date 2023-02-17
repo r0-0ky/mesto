@@ -35,8 +35,8 @@
       <button class="popup__close-button zero-button" id="cardPopupCloseButton" type="button"></button>
         <h2 class="popup__title">Новое место</h2>
         <form action="#" method="post" name="popup-form" class="popup__form" id="cardPopupForm">
-          <input type="text" class="popup__input" placeholder="Название" id="cardPopupInputTitle" name="input-title">
-          <input type="text" class="popup__input" placeholder="Ссылка на картинку" id="cardPopupInputSrc" name="input-src">
+          <input type="text" class="popup__input" placeholder="Название" required id="cardPopupInputTitle" name="input-title">
+          <input type="url" class="popup__input" placeholder="Ссылка на картинку" required id="cardPopupInputSrc" name="input-src">
           <button type="submit" class="popup__save-button zero-button">Создать</button>
         </form>
     </div>
@@ -69,6 +69,7 @@
       <p class="image-popup__caption"></p>
     </div>
   </section>
-  <script src="scripts/index.js"></script>
+  <script type="module" src="scripts/card.js"></script>
+  <script type="module" src="scripts/index.js"></script>
 </body>
 </html>
