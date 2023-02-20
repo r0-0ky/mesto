@@ -88,7 +88,7 @@ function openImagePopup(evt) {
     createImagePopup({
       src: evt.target.src,
       text: evt.target.closest(".card").children[2].textContent,
-      alt: evt.target.closest(".card").children[2].textContent,
+      alt: evt.target.alt,
     });
     openPopup(imagePopup);
 }
