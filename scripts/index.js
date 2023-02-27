@@ -1,25 +1,34 @@
 import  {initialCards} from "./card.js"
 
 const buttonEditer = document.querySelector(".profile__edit-button");
-const profileFormElement = document.querySelector("#profilePopupForm");
+const profileFormElement = document.querySelector("#profile-popup-form");
 const profileName = document.querySelector(".profile__title");
 const profileJob = document.querySelector(".profile__caption");
-const profileNameInput = document.querySelector("#profilePopupInputName");
-const profileJobInput = document.querySelector("#profilePopupInputJob");
-const profilePopup = document.querySelector("#profilePopup");
-const cardPopup = document.querySelector("#cardPopup");
-const cardFormElement = document.querySelector("#cardPopupForm");
-const cardTitleInput = document.querySelector("#cardPopupInputTitle");
-const cardSrcInput = document.querySelector("#cardPopupInputSrc");
+const profileNameInput = document.querySelector("#profile-popup-input-name");
+const profileJobInput = document.querySelector("#profile-popup-input-job");
+const profilePopup = document.querySelector("#profile-popup");
+const cardPopup = document.querySelector("#card-popup");
+const cardFormElement = document.querySelector("#card-popup-form");
+const cardTitleInput = document.querySelector("#card-popup-input-title");
+const cardSrcInput = document.querySelector("#card-popup-input-src");
 const gridCards = document.querySelector(".grid-cards");
 const cardTemplate = document.querySelector("#card").content.querySelector('.card');
-const profileCloseButton = document.querySelector("#profilePopupCloseButton");
-const cardCloseButton = document.querySelector("#cardPopupCloseButton");
+const profileCloseButton = document.querySelector("#profile-popup-close-button");
+const cardCloseButton = document.querySelector("#card-popup-close-button");
 const buttonAdder = document.querySelector(".profile__add-button");
 const imagePopup = document.querySelector(".image-popup");
 const imagePopupPicture = document.querySelector(".image-popup__picture");
 const imagePopupCaption = document.querySelector(".image-popup__caption");
 const imagePopupCloseButton = document.querySelector(".image-popup__close-button");
+const popup = Array.from(document.querySelectorAll(".popup"));
+
+initialCards.forEach((item) => {
+  const card = createCard({
+    name: item.name,
+    link: item.link,
+  });
+  gridCards.append(card);
+})
 
 function createCard(cardData) {
   const cardElement = cardTemplate.cloneNode(true);
@@ -41,11 +50,13 @@ function createImagePopup(cardData) {
 
 function openPopup(popup) {
   popup.classList.add("popup_opened");
+  document.addEventListener("keydown", closeOnEscape);
 }
 
 function closePopup(popup) {
   popup.classList.remove("popup_opened");
   popup.classList.add("close-animation");
+  document.removeEventListener("keydown", closeOnEscape);
 }
 
 function openCardPopup() {
@@ -93,14 +104,20 @@ function openImagePopup(evt) {
     openPopup(imagePopup);
 }
 
-initialCards.forEach((item) => {
-  const card = createCard({
-    name: item.name,
-    link: item.link,
-  });
-  gridCards.append(card);
-})
+function closeOnOverlay(evt) {
+  if (evt.target.classList.contains("popup")) {
+    closePopup(evt.target);
+  }
+}
 
+function closeOnEscape(evt) {
+  if (evt.key === "Escape") {
+    const popupActive = document.querySelector(".popup_opened");
+    closePopup(popupActive);
+  }
+}
+
+popup.forEach((item) => item.addEventListener("click", closeOnOverlay));
 profileFormElement.addEventListener("submit", handleProfileFormSubmit);
 profileCloseButton.addEventListener("click", () => closePopup(profilePopup));
 cardCloseButton.addEventListener("click", () => closePopup(cardPopup));

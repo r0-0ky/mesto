@@ -8,6 +8,7 @@
   line-height: 22px;
   border-radius: 2px;
   transition: background-color 0.3s;
+  margin-top: 16px;
 }
 
 .popup__save-button:hover {
