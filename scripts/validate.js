@@ -9,11 +9,11 @@ function enableValidation(obj) {
 function setEventListeners (obj, formElement) {
   const inputList = Array.from(formElement.querySelectorAll(obj.inputSelector));
   const buttonElement = formElement.querySelector(obj.submitButtonSelector);
-
+  
   toggleButtonState(obj, inputList, buttonElement);
   inputList.forEach((inputElement) => {
     inputElement.addEventListener("input", () => {
-      checkInputValidity(obj, formElement, inputElement)
+      checkInputValidity(obj, formElement, inputElement);
       toggleButtonState(obj, inputList, buttonElement);
     })
   })
@@ -54,7 +54,7 @@ function showInputError(obj, formElement, inputElement, errorMessage) {
 function hideInputError(obj, formElement, inputElement) {
   const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
   inputElement.classList.remove(obj.inputErrorClass);
-  errorElement.textContent = "";
+  errorElement.textContent = " ";
 };
 
 enableValidation({
