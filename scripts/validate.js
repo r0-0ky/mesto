@@ -1,3 +1,11 @@
+export const object = {
+  formSelector: '.popup__form',
+  inputSelector: '.popup__input',
+  submitButtonSelector: '.popup__button',
+  inactiveButtonClass: 'popup__save-button_disabled',
+  inputErrorClass: 'popup__input_type_error',
+}
+
 function enableValidation(obj) {
   const formList = Array.from(document.querySelectorAll(obj.formSelector));
   formList.forEach((formElement) => {
@@ -23,15 +31,15 @@ function checkInputValidity (obj, formElement, inputElement) {
   if (!inputElement.validity.valid) {
     showInputError(obj, formElement, inputElement, inputElement.validationMessage);
   } else {
-    hideInputError(obj, formElement, inputElement);
+    hideInputError(obj);
   }
 };
 
 
 function toggleButtonState(obj, inputList, buttonElement) {
   if (hasInvalidInput(inputList)) {
-    buttonElement.classList.add(obj.inactiveButtonClass);
-    buttonElement.setAttribute("disabled", "");
+    buttonElement.classList.add(obj.inactiveButtonClass);   
+    buttonElement.removeAttribute("disabled"); 
   }
   else {
     buttonElement.classList.remove(obj.inactiveButtonClass);   
@@ -51,16 +59,21 @@ function showInputError(obj, formElement, inputElement, errorMessage) {
   errorElement.textContent = errorMessage;
 };
 
-function hideInputError(obj, formElement, inputElement) {
-  const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
-  inputElement.classList.remove(obj.inputErrorClass);
-  errorElement.textContent = " ";
-};
+export function hideInputError(obj) {
+  const inputList = Array.from(document.querySelectorAll(obj.inputSelector));
+  inputList.forEach((inputElement) => {
+    const errorElement = document.querySelector(`.${inputElement.id}-error`);
+    inputElement.classList.remove(obj.inputErrorClass);
+    errorElement.textContent = " ";
+  })
+}
 
-enableValidation({
-  formSelector: '.popup__form',
-  inputSelector: '.popup__input',
-  submitButtonSelector: '.popup__button',
-  inactiveButtonClass: 'popup__save-button_disabled',
-  inputErrorClass: 'popup__input_type_error',
-}); 
+export function disableButton(obj) {
+  const buttonElements = Array.from(document.querySelectorAll(obj.submitButtonSelector));
+  buttonElements.forEach((item) => {
+    item.setAttribute("disabled", "");
+    item.classList.add(obj.inactiveButtonClass);
+  });
+}
+
+enableValidation(object); 

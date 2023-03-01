@@ -1,5 +1,6 @@
 .main {
   box-sizing: content-box;
+  min-height: 90vh;
 }
 
 @media screen and (max-width: 900px) {
