@@ -52,14 +52,14 @@ function createImagePopup(cardData) {
 function openPopup(popup) {
   popup.classList.add("popup_opened");
   document.addEventListener("keydown", closeOnEscape);
-  disableButton(object);
-  hideInputError(object);
 }
 
 function closePopup(popup) {
   popup.classList.remove("popup_opened");
   popup.classList.add("close-animation");
   document.removeEventListener("keydown", closeOnEscape);
+  disableButton(object);
+  hideInputError(object);
 }
 
 function openCardPopup() {
