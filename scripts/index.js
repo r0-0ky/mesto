@@ -1,5 +1,8 @@
-import  {initialCards} from "./card.js";
-import {disableButton, object, hideInputError} from "./validate.js";
+import  {initialCards} from "./cardData.js";
+import {object, FormValidator, formList} from "./formValidator.js";
+import {Card} from "./card.js";
+
+export {openImagePopup};
 
 const buttonEditer = document.querySelector(".profile__edit-button");
 const profileFormElement = document.querySelector("#profile-popup-form");
@@ -13,7 +16,6 @@ const cardFormElement = document.querySelector("#card-popup-form");
 const cardTitleInput = document.querySelector("#card-popup-input-title");
 const cardSrcInput = document.querySelector("#card-popup-input-src");
 const gridCards = document.querySelector(".grid-cards");
-const cardTemplate = document.querySelector("#card").content.querySelector('.card');
 const profileCloseButton = document.querySelector("#profile-popup-close-button");
 const cardCloseButton = document.querySelector("#card-popup-close-button");
 const buttonAdder = document.querySelector(".profile__add-button");
@@ -24,24 +26,10 @@ const imagePopupCloseButton = document.querySelector(".image-popup__close-button
 const popups = Array.from(document.querySelectorAll(".popup"));
 
 initialCards.forEach((item) => {
-  const card = createCard({
-    name: item.name,
-    link: item.link,
-  });
+  const card = new Card(item, "#card").createCard();
   gridCards.append(card);
 })
 
-function createCard(cardData) {
-  const cardElement = cardTemplate.cloneNode(true);
-  const cardImage =  cardElement.querySelector(".card__image");
-  cardElement.querySelector(".card__like-button").addEventListener("click", changeLikeButton);
-  cardElement.querySelector(".card__trash-button").addEventListener("click", deleteCard);
-  cardImage.addEventListener("click", () => openImagePopup(cardData));
-  cardElement.querySelector(".card__title").textContent = cardData.name;
-  cardImage.src = cardData.link;
-  cardImage.alt = cardData.name;
-  return cardElement;
-}
 
 function createImagePopup(cardData) {
   imagePopupPicture.src = cardData.src
@@ -58,8 +46,10 @@ function closePopup(popup) {
   popup.classList.remove("popup_opened");
   popup.classList.add("close-animation");
   document.removeEventListener("keydown", closeOnEscape);
-  disableButton(object);
-  hideInputError(object);
+  formList.forEach(formElement => {
+    new FormValidator(object, formElement).hideInputError();
+    new FormValidator(object, formElement).disableButton();
+  }) 
 }
 
 function openCardPopup() {
@@ -82,20 +72,13 @@ function handleProfileFormSubmit(evt) {
 
 function handleCardSubmit(evt) {
   evt.preventDefault();
-  const card = createCard({
+  const data = {
     name: cardTitleInput.value,
     link: cardSrcInput.value
-  });
+  };
+  const card = new Card(data, "#card").createCard();
   gridCards.prepend(card);
   closePopup(cardPopup);
-}
-
-function changeLikeButton(evt) {
-  evt.target.classList.toggle("card__like-button_active");
-}
-
-function deleteCard(evt) {
-  evt.target.closest(".card").remove();
 }
 
 function openImagePopup(cardData) {
