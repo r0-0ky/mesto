@@ -31,15 +31,11 @@ initialCards.forEach((data) => {
 });
 
 formList.forEach((formElement) => {
-  enableValidation(validationClasses, formElement);
+  new FormValidator(validationClasses, formElement).enableValidation();
 });
 
 function createCard(data, cardTemplate) {
   return new Card(data, cardTemplate).createCard();
-}
-
-function enableValidation(data, form) {
-  new FormValidator(data, form).enableValidation();
 }
 
 function createImagePopup(cardData) {
