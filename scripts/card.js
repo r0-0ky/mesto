@@ -1,9 +1,10 @@
- import {openImagePopup} from "./index.js"
- 
- export class Card {
+import {openImagePopup} from "./index.js" 
+
+export class Card {
   constructor(data, cardTemplate) {
     this._data = data;
     this._cardTemplate = cardTemplate;
+    this._openImagePopup = openImagePopup;
   }
 
   _getTemplate() {
@@ -11,18 +12,20 @@
     return cardElement;
   }
 
-  _changeLikeButton(evt) {
-    evt.target.classList.toggle("card__like-button_active");
+  _changeLikeButton() {
+    this._buttonLike.classList.toggle("card__like-button_active");
   }
 
-  _deleteCard(evt) {
-    evt.target.closest(".card").remove();
+  _deleteCard() {
+    this._element.remove();
+    this._element = null;
   }
 
   _setEventListeners() {
-    this._element.querySelector(".card__like-button").addEventListener("click", evt => {this._changeLikeButton(evt)});
-    this._element.querySelector(".card__trash-button").addEventListener("click", evt => {this._deleteCard(evt)});
-    this._element.querySelector(".card__image").addEventListener("click", () => {openImagePopup(this._data)});
+    this._buttonLike = this._element.querySelector(".card__like-button");
+    this._buttonLike.addEventListener("click", () => {this._changeLikeButton()});
+    this._element.querySelector(".card__trash-button").addEventListener("click", () => {this._deleteCard()});
+    this._element.querySelector(".card__image").addEventListener("click", () => {this._openImagePopup(this._data)});
   }
 
   createCard() {
