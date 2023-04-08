@@ -1,0 +1,11 @@
+{
+  "name": "mesto",
+  "version": "0.0.1",
+  "description": "Место - это приложение, которое позволит людям со всего мира деилиться и обмениваться своими впечатлениями   Посмотреть на демо Место можно [тут](https://r0xys.github.io/mesto/)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "r0xys",
+  "license": "ISC"
+}
