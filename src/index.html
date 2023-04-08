@@ -3,7 +3,6 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="pages/index.css">
   <title>Mesto</title>
 </head>
 <body class="page">
@@ -13,7 +12,7 @@
   <main class="main">
     <section class="profile">
       <div class="profile__flex-wrapper">
-        <img src="images/image.jpg" alt="Человек" class="profile__avatar">
+        <img src="<%=require('./images/image.jpg')%>" alt="Человек" class="profile__avatar">
         <div class="profile__info">
           <div class="profile__wrapper">
             <h1 class="profile__title">Жак-Ив Кусто</h1>
@@ -73,6 +72,5 @@
       <p class="image-popup__caption"></p>
     </div>
   </section>
-  <script type="module" src="scripts/pages/index.js"></script>
 </body>
 </html>
