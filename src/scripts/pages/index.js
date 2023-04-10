@@ -35,7 +35,7 @@ profilePopup.setEventListeners();
 
 const cardPopup = new PopupWithForm(cardPopupSelector, (evt, inputObj) => {
   const cardInputsObj = inputObj();
-  section.prependItem(new Card({name:cardInputsObj.input1, link:cardInputsObj.input2}, "#card", openImagePopup).createCard());
+  section.prependItem(new Card({name: cardInputsObj.input1, link: cardInputsObj.input2}, "#card", openImagePopup).createCard());
   cardPopup.close(evt);
 });
 cardPopup.setEventListeners();
