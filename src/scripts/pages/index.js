@@ -7,8 +7,6 @@ import Section from "../components/Section.js";
 import UserInfo from "../components/UserInfo.js";
 import "../../pages/index.css"
 
-export {openImagePopup}
-
 const {profilePopupSelector, imagePopupSelector, cardPopupSelector} = popupClasses;
 
 const cardValidation = new FormValidator(validationClasses, cardFormElement); 
@@ -21,22 +19,24 @@ const section = new Section(
   {
     items: initialCards,
     renderer: (item) => {
-      section.addItem(new Card(item, "#card").createCard());
+      section.addItem(new Card(item, "#card", openImagePopup).createCard());
     }
   },
   ".grid-cards"
 )
 section.render()
 
-const profilePopup = new PopupWithForm(profilePopupSelector, (evt) => {
-  userInfo.setUserInfo(profileNameInput.value , profileJobInput.value);
+const profilePopup = new PopupWithForm(profilePopupSelector, (evt, inputObj) => {
+  const profileInputsObj = inputObj();
+  userInfo.setUserInfo(profileInputsObj.input1 , profileInputsObj.input2);
   profilePopup.close(evt);
 });
 profilePopup.setEventListeners();
 
-const cardPopup = new PopupWithForm(cardPopupSelector, (evt) => {
-  const arr = cardPopup.close(evt);
-  section.prependItem(new Card({name: arr[0], link: arr[1]}, "#card").createCard());
+const cardPopup = new PopupWithForm(cardPopupSelector, (evt, inputObj) => {
+  const cardInputsObj = inputObj();
+  section.prependItem(new Card({name:cardInputsObj.input1, link:cardInputsObj.input2}, "#card", openImagePopup).createCard());
+  cardPopup.close(evt);
 });
 cardPopup.setEventListeners();
 
@@ -53,7 +53,8 @@ function openCardPopup() {
 }
 
 function openProfilePopup() {
-  userInfo.setUserInfo(userInfo.getUserInfo().userName, userInfo.getUserInfo().aboutUser);
+  const userInfoObj = userInfo.getUserInfo()
+  userInfo.setUserInfo(userInfoObj.userName, userInfoObj.aboutUser);
   profilePopup.open();
   profileValidation.hideAllInputErrors();
   profileValidation.disableButton();

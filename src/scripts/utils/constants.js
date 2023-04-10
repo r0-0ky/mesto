@@ -1,12 +1,10 @@
-export {imagePopupPicture, imagePopupCaption, initialCards, validationClasses, popupClasses, buttonEditer, cardFormElement, buttonAdder, profileNameInput, profileJobInput, profileFormElement}
+export {initialCards, validationClasses, popupClasses, buttonEditer, cardFormElement, buttonAdder, profileNameInput, profileJobInput, profileFormElement}
 const buttonEditer = document.querySelector(".profile__edit-button");
 const profileFormElement = document.querySelector("#profile-popup-form");
 const profileNameInput = document.querySelector("#profile-popup-input-name");
 const profileJobInput = document.querySelector("#profile-popup-input-job");
 const cardFormElement = document.querySelector("#card-popup-form");
 const buttonAdder = document.querySelector(".profile__add-button");
-const imagePopupPicture = document.querySelector(".image-popup__picture");
-const imagePopupCaption = document.querySelector(".image-popup__caption");
 const initialCards = [
   {
     name: 'Архыз',
