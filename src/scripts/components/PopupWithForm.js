@@ -10,8 +10,8 @@ export default class PopupWithForm extends Popup{
 
   _getInputValues() {
     this._inputValueObj = {};
-    this._inputArray.forEach((item, index) => {
-      this._inputValueObj[`input${index + 1}`] = item.value;
+    this._inputArray.forEach((item) => {
+      this._inputValueObj[item.name] = item.value;
     })
     return this._inputValueObj;
   }
@@ -21,12 +21,12 @@ export default class PopupWithForm extends Popup{
     this._popupForm = this._popup.querySelector(".popup__form");
     this._popupForm.addEventListener("submit", evt => {
       this._submit(evt, this._getInputValues);
-      this._popupForm.reset();
     });
   }
 
   close(evt) {
     if (evt) evt.preventDefault();
     super.close();
+    this._popupForm.reset();
   }
 }
