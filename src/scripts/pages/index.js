@@ -17,10 +17,6 @@ const api = new Api(apiData);
 Promise.all([api.getApiData("users/me"), api.getApiData("cards")])
   .then(([userData, cards]) => {
     userInfo.setUserInfo(userData);
-    profileJob.textContent = userData.about;
-    profileName.textContent = userData.name;
-    userAvatar.src = userData.avatar;
-
     const section = new Section(
       {
         items: cards,
@@ -106,7 +102,7 @@ const avatarPopup = new PopupWithForm(avatarPopupSelector, (evt, inputObj) => {
   avatarPopup.renderLoading(true);
   api.updateAvatar({avatar: inputObj()["input-src"]})
     .then(res => {
-      userAvatar.src = res.avatar;
+      userInfo.setUserInfo({ avatar: res.avatar });
       avatarPopup.close();
     })
     .catch(err => console.log(err))
